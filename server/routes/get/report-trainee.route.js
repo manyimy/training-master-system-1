@@ -72,6 +72,10 @@ export default (req, res) => {
               if(!model) return res.status(500).json({ status: 1 })
               return res.status(200).send({ status: 0, model })
             })
+            .catch((error) => {
+              console.log(error)
+              res.status(500).json({ status: 2 })
+            })
         else
           enrollment
             .findAll({where : { course_id }})
@@ -79,10 +83,10 @@ export default (req, res) => {
               if(!models) return res.status(500).json({ status: 1 })
               res.status(200).send({ status: 0, models })
             })
-          .catch((error) => {
-            console.log(error)
-            res.status(500).json({ status: 2 })
-          })
+            .catch((error) => {
+              console.log(error)
+              res.status(500).json({ status: 2 })
+            })
       }
     })
   })
